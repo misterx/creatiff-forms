@@ -1,6 +1,7 @@
 <?php
 namespace Creatiff\Forms\UI;
 
+use Creatiff\Forms\Cast;
 use Creatiff\Forms\Control;
 
 class Html extends Control{
@@ -16,7 +17,7 @@ class Html extends Control{
 	 */
 	public function setHtml($html)
 	{
-		$this->html = $html;
+		$this->html = Cast::string($html);
 	}
 
 	/**
