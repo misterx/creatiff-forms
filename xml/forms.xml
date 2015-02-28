@@ -1,0 +1,23 @@
+<App name="Test" xmlns:property="http://creatiff.com.ua/Forms/Property">
+
+		<Form frame="false">
+			<Button text="Hello">
+				<property:listeners>
+					<Event name="click">
+						<property:handler>
+							function(){
+								alert('CLick');
+							}
+						</property:handler>
+					</Event>
+					<Event name="mouseover">
+						<property:handler>
+							function(){
+								alert('Over');
+							}
+						</property:handler>
+					</Event>
+				</property:listeners>
+			</Button>
+		</Form>
+</App>

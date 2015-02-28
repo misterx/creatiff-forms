@@ -1,0 +1,63 @@
+<Grid title="Табличка">
+	<property:store>
+		<Store autoload="true" remoteSort="true">
+			<property:proxy>
+				<Store.Proxy.Ajax url="store.php"/>
+			</property:proxy>
+		</Store>
+	</property:store>
+	<Grid.Column name="fbool" title="Boolean"/>
+	<Grid.Column name="fint" title="Integer"/>
+	<Grid.Column name="fstring" title="String" flex="1"/>
+	<Grid.Column.Template name="color" title="Пятое">
+		<property:tpl>
+			<![CDATA[
+							<a href="@" style="color: {color};">{color}</a>
+					]]>
+		</property:tpl>
+	</Grid.Column.Template>
+	<property:toolbars>
+		<Toolbar dock="bottom">
+			<Button text="Кнопка">
+				<property:handler>
+					function(){
+					Ext.getCmp('testWindow').show();
+					}
+				</property:handler>
+			</Button>
+			<Button.Submit text="Отправить" url="http://ya.ru"/>
+
+		</Toolbar>
+	</property:toolbars>
+</Grid>
+
+<Window id="testWindow" title="Тестовое окно">
+<Form frame="false">
+	<property:toolbars>
+		<Toolbar dock="bottom">
+			<Button text="Кнопка">
+				<property:handler>
+					function(){
+					alert('11');
+					}
+				</property:handler>
+			</Button>
+			<Button.Submit text="Отправить" url="http://ya.ru"/>
+
+		</Toolbar>
+	</property:toolbars>
+	<Form.Checkbox label="Checkbox"/>
+	<Form.Combobox label="Combobox"/>
+	<Form.Date label="Date"/>
+	<Form.Display label="Display"/>
+	<Form.Fieldset title="Fieldset"/>
+	<Form.File label="File"/>
+	<Form.Number label="Number"/>
+	<Form.Radio label="Radio"/>
+	<Form.Tag label="Tag"/>
+	<Form.Text label="Text"/>
+	<Form.Textarea label="Texta rea"/>
+	<Form.Time label="Time"/>
+
+</Form>
+</Window>
