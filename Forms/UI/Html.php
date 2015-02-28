@@ -1,17 +1,32 @@
 <?php
 namespace Creatiff\Forms\UI;
 
-use Creatiff\Forms\Component;
 use Creatiff\Forms\Control;
-use Creatiff\Forms\Property;
 
 class Html extends Control{
 
-	protected function declareProperties()
+	/**
+	 * HTML content
+	 * @var string
+	 */
+	private $html = '';
+
+	/**
+	 * @param string $html
+	 */
+	public function setHtml($html)
 	{
-		return array(
-			'html' => Property::factory('String'),
-		);
+		$this->html = $html;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getHtml()
+	{
+		return $this->html;
+	}
+
+
 
 }
