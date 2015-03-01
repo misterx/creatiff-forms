@@ -4,20 +4,18 @@ namespace Creatiff\Forms;
 use Creatiff\Forms\Exception\Component as Exception;
 use Creatiff\Forms\Wrapper\RenderInterface;
 use Creatiff\Forms\UI\Event;
+use RecursiveIterator;
 
 /**
  * Class Component base of all UI components
  * @package Creatiff
  */
-abstract class Component implements \IteratorAggregate{
+abstract class Component implements \RecursiveIterator{
 
 	/** @var Component */
 	private $owner;
 	/** @var Component[] */
 	private $components = array();
-
-	private $id = null;
-	private $class = null;
 
 	/**
 	 * @param Component $owner
@@ -161,6 +159,11 @@ abstract class Component implements \IteratorAggregate{
 	}
 
 	/**
+	 * @var null
+	 */
+	private $id = null;
+
+	/**
 	 * Setter for id
 	 * @param $new_id
 	 * @return mixed
@@ -194,6 +197,13 @@ abstract class Component implements \IteratorAggregate{
 		return $this->id;
 	}
 
+
+	/**
+	 * @var null
+	 */
+	private $class = null;
+
+
 	/**
 	 * @param null $class
 	 */
@@ -210,6 +220,35 @@ abstract class Component implements \IteratorAggregate{
 		return $this->class;
 	}
 
+	/**
+	 * @var null
+	 */
+	private $listeners=array();
+
+
+	/**
+	 * @param Event|Collection $listeners
+	 * @throws Exception\Component
+	 */
+	public function setListeners($listeners)
+	{
+		if($listeners instanceof Event){
+			$listeners = Collection::factory(array($listeners));
+		}
+
+		if($listeners instanceof Collection){
+			throw new Exception('Listeners must be collection but :given given',array(':given'=>get_class($listeners)));
+		}
+		$this->listeners = $listeners;
+	}
+
+	/**
+	 * @return null
+	 */
+	public function getListeners()
+	{
+		return $this->listeners;
+	}
 
 
 	/*
@@ -261,23 +300,25 @@ abstract class Component implements \IteratorAggregate{
 	}
 
 	/**
-	 * Iterator for childs
-	 * @return \ArrayIterator
+	 * @param RenderInterface $renderInterface
+	 * @return mixed
 	 */
-	public function getIterator()
-	{
-		return new \ArrayIterator($this->getComponents());
-	}
-
 	public function render(RenderInterface $renderInterface){
 		return $renderInterface->render($this);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getTemplateName(){
 		return get_class($this);
 	}
 
-
+	/**
+	 * @param $name
+	 * @param $value
+	 * @throws Exception\Component
+	 */
 	public function __set($name,$value)
 	{
 		$setter='set'.$name;
@@ -287,6 +328,11 @@ abstract class Component implements \IteratorAggregate{
 			throw new Exception('Unable to set property ":property" in :component',[':property'=>$name,':component'=>get_class($this)]);
 	}
 
+	/**
+	 * @param $name
+	 * @return mixed
+	 * @throws Exception\Component
+	 */
 	public function __get($name)
 	{
 		$getter='get'.$name;
@@ -297,28 +343,85 @@ abstract class Component implements \IteratorAggregate{
 	}
 
 	/**
-	 * @var null
+	 * Iterator functions
 	 */
-	private $listeners=array();
 
-
-	public function setListeners($listeners)
+	/**
+	 * (PHP 5 &gt;= 5.1.0)<br/>
+	 * Returns if an iterator can be created for the current entry.
+	 * @link http://php.net/manual/en/recursiveiterator.haschildren.php
+	 * @return bool true if the current entry can be iterated over, otherwise returns false.
+	 */
+	public function hasChildren()
 	{
-		if($listeners instanceof Event){
-			$listeners = Collection::factory(array($listeners));
-		}
-
-		if($listeners instanceof \Collection){
-			throw new Exception('Listeners must be collection but :given given',array(':given'=>get_class($listeners)));
-		}
-		$this->listeners = $listeners;
+		return (bool)$this->current()->getComponentCount();
 	}
 
 	/**
-	 * @return null
+	 * (PHP 5 &gt;= 5.1.0)<br/>
+	 * Returns an iterator for the current entry.
+	 * @link http://php.net/manual/en/recursiveiterator.getchildren.php
+	 * @return RecursiveIterator An iterator for the current entry.
 	 */
-	public function getListeners()
+	public function getChildren()
 	{
-		return $this->listeners;
+		return $this->current();
 	}
+
+	/**
+	 * (PHP 5 &gt;= 5.0.0)<br/>
+	 * Return the current element
+	 * @link http://php.net/manual/en/iterator.current.php
+	 * @return mixed Can return any type.
+	 */
+	public function current()
+	{
+		return current($this->components);
+	}
+
+	/**
+	 * (PHP 5 &gt;= 5.0.0)<br/>
+	 * Move forward to next element
+	 * @link http://php.net/manual/en/iterator.next.php
+	 * @return void Any returned value is ignored.
+	 */
+	public function next()
+	{
+		next($this->components);
+	}
+
+	/**
+	 * (PHP 5 &gt;= 5.0.0)<br/>
+	 * Return the key of the current element
+	 * @link http://php.net/manual/en/iterator.key.php
+	 * @return mixed scalar on success, or null on failure.
+	 */
+	public function key()
+	{
+		return key($this->components);
+	}
+
+	/**
+	 * (PHP 5 &gt;= 5.0.0)<br/>
+	 * Checks if current position is valid
+	 * @link http://php.net/manual/en/iterator.valid.php
+	 * @return boolean The return value will be casted to boolean and then evaluated.
+	 * Returns true on success or false on failure.
+	 */
+	public function valid()
+	{
+		return null !== $this->key();
+	}
+
+	/**
+	 * (PHP 5 &gt;= 5.0.0)<br/>
+	 * Rewind the Iterator to the first element
+	 * @link http://php.net/manual/en/iterator.rewind.php
+	 * @return void Any returned value is ignored.
+	 */
+	public function rewind()
+	{
+		reset($this->components);
+	}
+
 }
