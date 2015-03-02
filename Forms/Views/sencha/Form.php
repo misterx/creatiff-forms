@@ -15,6 +15,7 @@ Ext.create('Ext.form.Panel', {
 	height: <?=renderPropertyValue($component,$this,'height');?>,
 	frame: <?=renderPropertyValue($component,$this,'frame');?>,
 	dockedItems: <?=renderPropertyValue($component,$this,'toolbars');?>,
+	listeners: <?=renderListeners($component,$this);?>,
 
 	items: [
 		<?= render_children($component,$this);?>
