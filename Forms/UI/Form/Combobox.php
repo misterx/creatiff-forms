@@ -18,12 +18,12 @@ class Combobox extends Field{
 	/**
 	 * @var string
 	 */
-	private $displayField = '';
+	private $displayField = 'name';
 
 	/**
 	 * @var string
 	 */
-	private $valueField = '';
+	private $valueField = 'id';
 
 	/**
 	 * @param string $displayField

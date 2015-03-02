@@ -13,7 +13,7 @@ class Store extends Component{
 	/**
 	 * @var array
 	 */
-	private $data = array();
+	private $data = null;
 
 	/**
 	 * @var bool

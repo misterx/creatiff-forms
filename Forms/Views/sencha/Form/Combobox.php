@@ -10,6 +10,7 @@ Ext.create('Ext.form.field.ComboBox', {
 	displayField: <?=renderPropertyValue($component,$this,'displayField');?>,
 	valueField: <?=renderPropertyValue($component,$this,'valueField');?>,
 	name: <?=renderPropertyValue($component,$this,'name');?>,
+	value: <?=renderPropertyValue($component,$this,'value');?>,
 	disabled: <?=renderPropertyValue($component,$this,'disabled');?>,
 	readOnly: <?=renderPropertyValue($component,$this,'readonly');?>
 })

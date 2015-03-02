@@ -25,6 +25,13 @@ class Utils{
 		return new \RecursiveIteratorIterator($filter);
 	}
 
+	public static function getField(Component $component, $name){
+		foreach(self::findFields($component, $name) as $field){
+			return $field;
+		}
+		return null;
+	}
+
 	public static function setValues(Component $component, array $values){
 		/** @var \Creatiff\Forms\UI\Form\Field $field*/
 		foreach(self::findFields($component) as $field){

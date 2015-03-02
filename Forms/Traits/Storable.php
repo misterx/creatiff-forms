@@ -11,14 +11,17 @@ trait Storable {
 	private $store = null;
 
 	/**
+	 * Initial component data
+	 * @var array
+	 */
+	private $data = array();
+
+	/**
 	 * @param $store
 	 * @throws \Creatiff\Forms\Exception\Component
 	 */
-	public function setStore($store)
+	public function setStore(Store $store)
 	{
-		if(!($store instanceof Store) and !is_string($store)){
-			throw new Exception('Store must be id or object');
-		}
 		$this->store = $store;
 	}
 
@@ -27,6 +30,33 @@ trait Storable {
 	 */
 	public function getStore()
 	{
+		if(!$this->store){
+			$this->setStore(new Store());
+		}
 		return $this->store;
+	}
+
+	/**
+	 * @param array $data
+	 */
+	public function setData($data)
+	{
+		if(is_string($data)){
+			$data = json_decode($data,true);
+		}
+
+		if(!is_array($data)){
+			throw new Exception('Wrong data in store');
+		}
+
+		$this->getStore()->data = $data;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getData()
+	{
+		return $this->getStore()->data;
 	}
 }
