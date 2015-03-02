@@ -9,9 +9,7 @@ Ext.create('Ext.Button', {
 		if (form.isValid()) {
 			form.submit({
 				url: <?=renderPropertyValue($component,$this,'url');?>,
-				success: function(form, action) {
-					Ext.Msg.alert('Success', action.result.msg);
-				},
+				success: <?=renderPropertyCode($component,$this,'handler');?>,
 				failure: function(form, action) {
 					//http://www.sencha.com/forum/showthread.php?152075-Server-Validation-with-JSON-Response
 					form.markInvalid(action.result.errors);

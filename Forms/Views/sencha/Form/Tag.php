@@ -12,5 +12,6 @@ Ext.create('Ext.form.field.Tag', {
 	name: <?=renderPropertyValue($component,$this,'name');?>,
 	value: <?=renderPropertyValue($component,$this,'value');?>,
 	disabled: <?=renderPropertyValue($component,$this,'disabled');?>,
+	msgTarget: 'side',
 	readOnly: <?=renderPropertyValue($component,$this,'readonly');?>
 })

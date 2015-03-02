@@ -8,6 +8,7 @@ Ext.create('Ext.form.field.TextArea', {
 	fieldLabel: <?=renderPropertyValue($component,$this,'label');?>,
 	value: <?=renderPropertyValue($component,$this,'value');?>,
 	name: <?=renderPropertyValue($component,$this,'name');?>,
+	msgTarget: 'side',
 	disabled: <?=renderPropertyValue($component,$this,'disabled');?>,
 	readOnly: <?=renderPropertyValue($component,$this,'readonly');?>
 })

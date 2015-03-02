@@ -7,6 +7,7 @@ Ext.create('Ext.form.field.Display', {
 	id: <?=renderPropertyValue($component,$this,'id');?>,
 	fieldLabel: <?=renderPropertyValue($component,$this,'label');?>,
 	value: <?=renderPropertyValue($component,$this,'value');?>,
+	msgTarget: 'side',
 	name: <?=renderPropertyValue($component,$this,'name');?>,
 	disabled: <?=renderPropertyValue($component,$this,'disabled');?>
 })
