@@ -14,7 +14,7 @@ Ext.create('Ext.Button', {
 				},
 				failure: function(form, action) {
 					//http://www.sencha.com/forum/showthread.php?152075-Server-Validation-with-JSON-Response
-					form.getForm().markInvalid(operation.getError());
+					form.markInvalid(action.result.errors);
 				}
 			});
 		}

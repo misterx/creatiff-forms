@@ -9,7 +9,8 @@ Ext.create('Ext.form.field.Tag', {
 	store:  <?=renderPropertyValue($component,$this,'store');?>,
 	displayField: <?=renderPropertyValue($component,$this,'displayField');?>,
 	valueField: <?=renderPropertyValue($component,$this,'valueField');?>,
-	name: <?=renderPropertyValue($component,$this,'name',null,'[]');?>,
+	name: <?=renderPropertyValue($component,$this,'name');?>,
+	value: <?=renderPropertyValue($component,$this,'value');?>,
 	disabled: <?=renderPropertyValue($component,$this,'disabled');?>,
 	readOnly: <?=renderPropertyValue($component,$this,'readonly');?>
 })
