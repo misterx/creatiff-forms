@@ -11,7 +11,6 @@ Ext.create('Ext.Button', {
 				url: <?=renderPropertyValue($component,$this,'url');?>,
 				success: <?=renderPropertyCode($component,$this,'handler');?>,
 				failure: function(form, action) {
-					//http://www.sencha.com/forum/showthread.php?152075-Server-Validation-with-JSON-Response
 					form.markInvalid(action.result.errors);
 				}
 			});
