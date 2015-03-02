@@ -236,7 +236,7 @@ abstract class Component implements \RecursiveIterator{
 			$listeners = Collection::factory(array($listeners));
 		}
 
-		if($listeners instanceof Collection){
+		if($listeners instanceof Creatiff\Forms\Collection){
 			throw new Exception('Listeners must be collection but :given given',array(':given'=>get_class($listeners)));
 		}
 		$this->listeners = $listeners;
