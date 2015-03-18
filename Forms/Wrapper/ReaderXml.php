@@ -39,11 +39,15 @@ class ReaderXml implements ReaderInterface{
 		return array_key_exists($name,$this->aliases)?$this->aliases[$name]:$name;
 	}
 
-	protected function parse(\SimpleXMLElement $xml){
+	protected function createComponent($name){
+		$class_name = $class_name = $this->fullClassName($this->alias((string)$name));
+		return new $class_name();
+	}
 
-		$class_name = $this->fullClassName($this->alias((string)$xml->getName()));
+	protected function parse(\SimpleXMLElement $xml){
 		/** @var Component $component */
-		$component = new $class_name();
+		$component = $this->createComponent((string)$xml->getName());
+
 		foreach($xml->attributes() as $name=>$value){
 			$component->$name = $this->phpize($value);
 		}
