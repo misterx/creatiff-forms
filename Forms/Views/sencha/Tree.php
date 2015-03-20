@@ -4,8 +4,6 @@
 include_once "_helpers.php";
 ?>
 Ext.create('Ext.tree.Panel', {
-	//Form params
-	bodyPadding: 10,
 	//Panel
 	componentCls: <?=renderPropertyValue($component,$this,'class');?>,
 	id: <?=renderPropertyValue($component,$this,'id');?>,
@@ -18,7 +16,8 @@ Ext.create('Ext.tree.Panel', {
 	store:  <?=renderPropertyValue($component,$this,'store');?>,
 	listeners: <?=renderListeners($component,$this);?>,
 	region: <?=renderPropertyValue($component,$this,'region');?>,
+	rootVisible: false,
 	items: [
-	<?= render_children($component,$this);?>
+		<?= render_children($component,$this);?>
 	]
 })

@@ -9,15 +9,5 @@ Ext.create('Ext.data.TreeStore', {
 	fields: [<?= render_children($component,$this);?>],
 	autoLoad: <?=renderPropertyValue($component,$this,'autoLoad');?>,
 	remoteSort: <?=renderPropertyValue($component,$this,'remoteSort');?>,
-root: {
-    expanded: true,
-    text: "My Root",
-    children: [
-        { text: "Child 1", leaf: true },
-        { text: "Child 2", expanded: true, children: [
-            { text: "GrandChild", leaf: true }
-        ] }
-    ]
-},
 	<?php if($component->getProxy()){?>proxy : <?=renderPropertyValue($component,$this,'proxy');?>,<?php }?>
 })

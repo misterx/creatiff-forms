@@ -9,7 +9,5 @@ Ext.create('Ext.data.Store', {
 	fields: [<?= render_children($component,$this);?>],
 	autoLoad: <?=renderPropertyValue($component,$this,'autoLoad');?>,
 	remoteSort: <?=renderPropertyValue($component,$this,'remoteSort');?>,
-<?php if($component->getProxy()){?>proxy : <?=renderPropertyValue($component,$this,'proxy');?>,<?php }?>
-
-
+	<?php if($component->getProxy()){?>proxy : <?=renderPropertyValue($component,$this,'proxy');?>,<?php }?>
 })
