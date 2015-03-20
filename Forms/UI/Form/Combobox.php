@@ -6,6 +6,7 @@ use Creatiff\Forms\Component;
 use Creatiff\Forms\Exception\Component as Exception;
 use Creatiff\Forms\Property;
 use Creatiff\Forms\Traits\Storable;
+use Creatiff\Forms\UI\Store;
 
 /**
  * Class Combobox
@@ -13,7 +14,9 @@ use Creatiff\Forms\Traits\Storable;
  * @package Creatiff\Forms\UI
  */
 class Combobox extends Field{
-	use Storable;
+	use Storable {
+		defaultStore as storableDefaultStore;
+	}
 
 	/**
 	 * @var string
@@ -55,6 +58,16 @@ class Combobox extends Field{
 	public function getValueField()
 	{
 		return $this->valueField;
+	}
+
+	protected function defaultStore()
+	{
+		$store = $this->storableDefaultStore();
+		$valueField = new Store\Field\String($store);
+		$valueField->name = $this->valueField;
+		$displayField = new Store\Field\String($store);
+		$displayField->name = $this->displayField;
+		return $store;
 	}
 
 

@@ -31,7 +31,7 @@ trait Storable {
 	public function getStore()
 	{
 		if(!$this->store){
-			$this->setStore(new Store());
+			$this->setStore($this->defaultStore());
 		}
 		return $this->store;
 	}
@@ -58,5 +58,12 @@ trait Storable {
 	public function getData()
 	{
 		return $this->getStore()->data;
+	}
+
+	/**
+	 * @return Store
+	 */
+	protected function defaultStore(){
+		return new Store();
 	}
 }

@@ -3,17 +3,12 @@ namespace Creatiff\Forms\UI\Store;
 
 use Creatiff\Forms\Component;
 use Creatiff\Forms\Exception\Component as Exception;
-use Creatiff\Forms\Property;
 use Creatiff\Forms\UI\Store;
 
 abstract class Field extends Component{
 
-	protected function declareProperties()
-	{
-		return array(
-			'name' => Property::factory('String'),
-		);
-	}
+	private $name = '';
+
 
 	protected function validateContainer(Component $component)
 	{
@@ -29,15 +24,21 @@ abstract class Field extends Component{
 		throw new Exception(':component is not container',array(':component'=>get_class($this)));
 	}
 
+	/**
+	 * @param string $name
+	 */
 	public function setName($name)
 	{
 		$this->name = $name;
-		return $this;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName()
 	{
 		return $this->name;
 	}
+
 
 }

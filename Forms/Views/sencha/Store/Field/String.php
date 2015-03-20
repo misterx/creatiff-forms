@@ -3,5 +3,5 @@
 /** @var Creatiff\Forms\Wrapper\RenderHtml $this */
 ?>
 Ext.create('Ext.data.field.String', {
-	name :	'<?=$component->getName();?>'
+	name :	'<?=$component->name;?>'
 })
