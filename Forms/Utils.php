@@ -12,9 +12,15 @@ class Utils{
 		return new \RecursiveIteratorIterator($iterator);
 	}
 
-	public static function findByObject(Component $component, $class){
+	public static function findAllByClass(Component $component, $class){
 		$iterator = new Object($component,$class);
 		return new \RecursiveIteratorIterator($iterator);
+	}
+
+	public static function findOneByClass(Component $component, $class){
+		foreach(self::findAllByClass($component,$class) as $component){
+			return $component;
+		}
 	}
 
 	public static function findFields(Component $component, $name = null){

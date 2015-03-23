@@ -28,6 +28,11 @@ class Combobox extends Field{
 	 */
 	private $valueField = 'id';
 
+
+	private $typeAhead = false;
+
+	private $editable = false;
+
 	/**
 	 * @param string $displayField
 	 */
@@ -69,6 +74,40 @@ class Combobox extends Field{
 		$displayField->name = $this->displayField;
 		return $store;
 	}
+
+	/**
+	 * @param boolean $typeAhead
+	 */
+	public function setTypeAhead($typeAhead)
+	{
+		$this->typeAhead = Cast::bool($typeAhead);
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getTypeAhead()
+	{
+		return $this->typeAhead;
+	}
+
+	/**
+	 * @param boolean $editable
+	 */
+	public function setEditable($editable)
+	{
+		$this->editable = $editable;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getEditable()
+	{
+		return $this->editable;
+	}
+
+
 
 
 }

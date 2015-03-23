@@ -13,6 +13,8 @@ Ext.create('Ext.form.field.ComboBox', {
 	value: <?=renderPropertyValue($component,$this,'value');?>,
 	msgTarget: 'side',
 	queryCaching: false,
+	typeAhead: <?=renderPropertyValue($component,$this,'typeAhead');?>,
+	editable: <?=renderPropertyValue($component,$this,'editable');?>,
 	disabled: <?=renderPropertyValue($component,$this,'disabled');?>,
 	readOnly: <?=renderPropertyValue($component,$this,'readonly');?>
 })
