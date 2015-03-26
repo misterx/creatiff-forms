@@ -14,7 +14,7 @@ class Utils{
 
 	public static function findAllByClass(Component $component, $class){
 		$iterator = new Object($component,$class);
-		return new \RecursiveIteratorIterator($iterator);
+		return new \RecursiveIteratorIterator($iterator,\RecursiveIteratorIterator::CHILD_FIRST);
 	}
 
 	public static function findOneByClass(Component $component, $class){
