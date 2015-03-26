@@ -2,7 +2,6 @@
 namespace Creatiff\Forms\UI\Grid\Column;
 
 use Creatiff\Forms\Cast;
-use Creatiff\Forms\Property;
 use Creatiff\Forms\UI\Grid\Column;
 
 class Template extends Column{

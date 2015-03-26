@@ -11,6 +11,7 @@ Ext.create('Ext.grid.column.Column', {
 	sortable: <?=renderPropertyValue($component,$this,'sortable');?>,
 	flex: <?=renderPropertyValue($component,$this,'flex');?>,
 	hidden: <?=renderPropertyValue($component,$this,'hidden');?>,
+	filter: <?=renderPropertyValue($component,$this,'filter');?>,
 	<?php if($component->getComponentCount()>0):?>
 	columns:[<?= render_children($component,$this);?>],
 	<?php endif;?>

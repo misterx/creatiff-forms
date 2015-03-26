@@ -23,6 +23,12 @@ class Grid extends Panel{
 	 */
 	private $hideHeaders = false;
 
+
+	/**
+	 * @var null
+	 */
+	private $filterable = true;
+
 	/**
 	 * @param boolean $sortable
 	 */
@@ -55,6 +61,21 @@ class Grid extends Panel{
 		return $this->hideHeaders;
 	}
 
+	/**
+	 * @param null $filterable
+	 */
+	public function setFilterable($filterable)
+	{
+		$this->filterable = $filterable;
+	}
+
+	/**
+	 * @return null
+	 */
+	public function getFilterable()
+	{
+		return $this->filterable;
+	}
 
 
 

@@ -35,6 +35,11 @@ class Column extends Component{
 	private $hidden = false;
 
 	/**
+	 * @var Filter
+	 */
+	private $filter = null;
+
+	/**
 	 * @param int $flex
 	 */
 	public function setFlex($flex)
@@ -129,6 +134,24 @@ class Column extends Component{
 	{
 		return $this->hidden;
 	}
+
+
+	/**
+	 * @param Filter $filter
+	 */
+	public function setFilter(Filter $filter)
+	{
+		$this->filter = $filter;
+	}
+
+	/**
+	 * @return null
+	 */
+	public function getFilter()
+	{
+		return $this->filter;
+	}
+
 
 
 

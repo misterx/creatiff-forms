@@ -5,6 +5,7 @@ include_once "_helpers.php";
 ?>
 Ext.create('Ext.grid.Panel', {
 	//Panel
+	store:  <?=renderPropertyValue($component,$this,'store');?>,
 	componentCls: <?=renderPropertyValue($component,$this,'class');?>,
 	id: <?=renderPropertyValue($component,$this,'id');?>,
 	title: <?=renderPropertyValue($component,$this,'title');?>,
@@ -13,8 +14,10 @@ Ext.create('Ext.grid.Panel', {
 	height: <?=renderPropertyValue($component,$this,'height');?>,
 	frame: <?=renderPropertyValue($component,$this,'frame');?>,
 	dockedItems: <?=renderPropertyValue($component,$this,'toolbars');?>,
-	store:  <?=renderPropertyValue($component,$this,'store');?>,
 	sortableColumns:  <?=renderPropertyValue($component,$this,'sortable');?>,
+	<?php if($component->filterable):?>
+	plugins:  'gridfilters',
+	<?php endif;?>
 	hideHeaders:  <?=renderPropertyValue($component,$this,'hideHeaders');?>,
 	columns: [
 		<?= render_children($component,$this);?>

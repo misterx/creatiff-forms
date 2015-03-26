@@ -14,7 +14,7 @@ function renderPropertyValue(Creatiff\Forms\Component $component, \Creatiff\Form
 		case is_array($value): return json_encode($value); break;
 		case is_string($value): return "'".addslashes(trim($prefix.$value.$postfix))."'"; break;
 		case is_bool($value): return $value?'true':'false'; break;
-		case ($value instanceof \Creatiff\Forms\Component): return $render->render($value); break;
+		case ($value instanceof \Creatiff\Forms\Component): return trim($render->render($value)); break;
 		case is_float($value):
 		case is_int($value):
 		default: return $value; break;
@@ -36,7 +36,7 @@ function renderListeners(Creatiff\Forms\Component $component, \Creatiff\Forms\Wr
 }
 
 function renderPropertyCode(Creatiff\Forms\Component $component, \Creatiff\Forms\Wrapper\RenderHtml $render, $property){
-	$code = rtrim($value = $component->{$property},',;');
+	$code = rtrim(trim($component->{$property}),',;');
 	if(!$code){
 		return 'null';
 	}else{
